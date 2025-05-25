@@ -9,9 +9,19 @@ spec:
     repoURL: https://github.com/Fro1m/clustertools.git
     targetRevision: main
     path: helm-charts/nginx-ingress
+    helm:
+      releaseName: nginx-ingress-app
+      values: |
+        controller:
+          admissionWebhooks:
+            enabled: true
+            failurePolicy: Ignore
+            patch:
+              enabled: false
+            skipExisting: true  # Skip if resources already exist
   destination:
     server: https://kubernetes.default.svc
-    namespace: nginx-ingress
+    namespace: ingress-nginx
   syncPolicy:
     automated:
       prune: true
@@ -20,6 +30,10 @@ spec:
       - CreateNamespace=true
       - ServerSideApply=true
       - Replace=true
+      - Prune=true
+      - PruneLast=true
+      - PrunePropagationPolicy=foreground
+      - ApplyOutOfSyncOnly=true
     retry:
       limit: 5
       backoff:
