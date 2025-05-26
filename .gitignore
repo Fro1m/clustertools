@@ -1,2 +1,3 @@
 config for azure k8s cluster
 systems credentials.txt
+vault-keys.txt
