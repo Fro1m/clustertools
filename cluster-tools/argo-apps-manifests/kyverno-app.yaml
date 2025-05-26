@@ -18,6 +18,11 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true
+      - Replace=true
+      - Prune=true
+      - PruneLast=true
+      - PrunePropagationPolicy=foreground
     retry:
       limit: 5
       backoff:
