@@ -14,11 +14,16 @@ spec:
       values: |
         controller:
           admissionWebhooks:
-            enabled: true
+            enabled: false
             failurePolicy: Ignore
             patch:
               enabled: false
-            skipExisting: true  # Skip if resources already exist
+            createSecretJob:
+              enabled: false
+            patchWebhookJob:
+              enabled: false
+        defaultBackend:
+          enabled: true
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx
