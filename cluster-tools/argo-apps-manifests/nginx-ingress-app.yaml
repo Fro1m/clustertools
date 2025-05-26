@@ -14,12 +14,14 @@ spec:
       values: |
         controller:
           admissionWebhooks:
-            enabled: true
+            enabled: false
             failurePolicy: Ignore
             patch:
-              enabled: true
-            certManager:
-              enabled: false  # Disable cert-manager
+              enabled: false
+            createSecretJob:
+              enabled: false
+            patchWebhookJob:
+              enabled: false
         defaultBackend:
           enabled: true
   destination:
